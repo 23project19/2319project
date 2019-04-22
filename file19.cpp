@@ -325,4 +325,115 @@ inline void Reservations :: Deletes(){char confirmation ;
 
                                     cout << "\n\n-------------------------------------------------\n\n" ;
 
-                                    cout <<"\n\nEnter your NIC :\n\n" ;
+      
+				    cout <<"\n\nEnter your NIC :\n\n" ;
+				     str_City = City ;
+                    str_ContactNumber = ContactNumber ;
+                    str_UserName = Username ;
+                    str_Password = Password ;
+
+
+                fstream registration ;
+
+                registration.open("Passenger.txt", ios::app | ios:: out | ios::ate);
+
+                registration << str_NIC <<"\t"<< str_name <<"\t"<< str_City <<"\t"<< str_ContactNumber <<"\t"<< str_UserName
+                             <<"\t"  << str_Password << "\n";
+
+                registration.close();
+
+
+
+            }
+
+// Passenger deconstructor
+inline Passenger :: ~Passenger(){}
+
+inline TimeTables :: ~TimeTables(){}
+
+inline Payments :: ~Payments(){}
+
+
+// Reservations constructor
+inline Reservations :: Reservations(){}
+
+
+/*************************************************************************************************************************************/
+
+
+
+ int main()
+{
+
+
+    int mainchoice, subChoiceOne , nt ;
+    string name, NIC,  City, Password,  UserName, ContactNumber, DepSt, ArrSt;
+
+
+
+    try{
+
+        mainMenu :
+
+
+                system("COLOR 70");
+            cout << "\n\n Welcome to SPRPTA Bus Ticket Reservation System \n\n" ;
+
+
+
+            cout << "\n\n  1.Customer\n\n"
+                 << "  2.Reservation\n\n"
+                 << "  3.Exit\n\n"
+                 << "\n\n Enter your choice :" ;
+            try{
+
+            cin >> mainchoice ;
+
+            if ((mainchoice !=1) & (mainchoice != 2) & (mainchoice != 3 )){
+
+                throw 11 ;
+
+
+            }
+        }
+
+        catch(int x){
+
+            perror("\n\n Please select a Relevant Number from the menu \n\n" );
+            return main() ;
+
+        }
+            switch(mainchoice){
+
+
+
+                case 1:{
+                            subMenu :
+                                        system("CLS");
+
+                            cout << "-------------------------------------------------\n\n"
+                                    <<  "\n\n1.Register\n\n"
+                                    << "2.Modify\n\n"
+                                    << "3.Remove Account\n\n"
+                                    << "\n\nEnter your choice :" ;
+                    try{
+
+                            cin >> subChoiceOne ;
+
+          if ((subChoiceOne !=1) & (subChoiceOne != 2) & (subChoiceOne != 3 )){
+
+                throw 12 ;
+
+
+            }
+                    }
+            catch(int y){
+
+                perror( "\n\nError - Please select a Relevant Number from the menu \n\n") ;
+                goto mainMenu ;
+                system("CLS");
+
+        }
+
+
+                            switch(subChoiceOne){
