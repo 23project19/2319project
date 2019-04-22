@@ -73,4 +73,39 @@ protected :
                 double  CalculateFee(double, int) ;
                 ~Reservations();
 };
-
+// class TimeTables
+class TimeTables : public Reservations{
+    public:
+                void Show()const ;
+                ~TimeTables ();
+};
+// class Payments
+class Payments: public Reservations{
+    public :
+                void Show()const ;
+                ~Payments();
+};
+// payments - show
+inline void Payments :: Show()const{
+                    fstream payments ;
+                    payments.open("Payments.txt",ios :: in)  ;
+                    string line ;
+                    cout << "\n\n-----------------Payment Scheme------------------\n\n" ;
+                    while(!payments.eof()){
+                            getline(payments,line);
+                            cout << line << "\n" ;
+                    }
+}
+// timetables - Show
+inline void TimeTables :: Show()const{
+                    string line2 ;
+                    ifstream timetable("Timetables.txt") ;
+                    cout << "\n\n----------------TimeTable-------------------------\n\n" ;
+                    while(!timetable.eof()){
+                            getline(timetable,line2) ;
+                            cout << line2 << "\n\n" ;
+                    }
+}
+// Reservations constructor
+inline Reservations :: Reservations(string NIC, string DeptSt, string ArrivalSt, int NoTickets ){
+                        Reservations  r2 ;
