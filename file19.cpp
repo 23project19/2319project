@@ -772,4 +772,102 @@ inline double Reservations :: CalculateFee(double fee, int nt)
    return i_total ;
 }
 
-  }
+
+// Seats - CheckSeatAvailability
+ inline void  Seats ::  CheckSeatAvailabilty(){
+
+                    int  NoLines = 0 ;
+                    string line ;
+                    ifstream SeatAvailbility ;
+
+                    SeatAvailbility.open("Seats.txt");
+
+                    while(SeatAvailbility.eof()){
+
+                            getline(SeatAvailbility,line) ;
+                            NoLines ++;
+
+
+
+                    }
+
+                    i_SeatNo = NoLines  ;
+
+
+
+                            if(i_SeatNo == 32 ){
+
+                            cout <<"\n\nSeats are not available at the moment.\n\n" ;
+                            }
+
+                            else
+                            {
+
+
+                            cout <<"\n\n" << 32 - i_SeatNo << "  are available.\n\n" ;
+
+                            }
+
+                    SeatAvailbility.close();
+                } // seat availability  function end
+
+// Delete record function
+inline void Passenger ::  Deletes(){
+
+
+
+                    string   nic, name, city, username, password , cn;
+
+                     cout <<"\n\nEnter your NIC to delete the record :\n\n" ;
+                     cin >> str_NIC ;
+
+
+                        fstream deleteF ;
+                        ofstream df ;
+
+                        deleteF.open("Passenger.txt", ios::in | ios :: out);
+
+
+                            while(deleteF >> nic >> name >> city >> cn >>username >> password){
+
+                                    df.open("temp2.txt",ios :: ate ) ;
+
+                                        if(nic != str_NIC){
+
+                                            df    << nic <<"\t"<< name <<"\t"<< city <<"\t"
+                                                      << cn <<"\t"<< username
+                                                      <<"\t"  << password << "\n";
+
+                                        }
+
+
+                                        else {
+
+                                               count01 ++ ;
+                                        }
+
+                                            df.close() ;
+
+
+                                }// end of while
+
+                                  deleteF.close() ;
+                                if(count01 == 0){
+
+                                                remove("temp2.txt") ;
+                                                cout << "\n\nRecord not found\n\n" ;
+
+                                                }
+
+                                            if(count01 > 0){
+
+                                                remove("Passenger.txt");
+                                                rename("temp2.txt","Passenger.txt");
+
+                                            }
+
+
+                                        cout << "\n\nDone!\n\n" ;
+
+
+            }  }
