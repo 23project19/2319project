@@ -109,3 +109,42 @@ inline void TimeTables :: Show()const{
 // Reservations constructor
 inline Reservations :: Reservations(string NIC, string DeptSt, string ArrivalSt, int NoTickets ){
                         Reservations  r2 ;
+			                        str_NIC = NIC ;
+                        str_Dep_St = DeptSt ;
+                        str_Arrival_St = ArrivalSt ;
+                        i_No_Tickets = NoTickets ;
+                        ifstream PaymentsRead ;
+                        PaymentsRead.open("Payments.txt") ;
+                        double  ch ;
+                        string s1,s2 ;
+                        while(PaymentsRead >> s1 >> s2 >> ch){
+                                if((str_Dep_St == s1) & (str_Arrival_St == s2)){
+                                    i_total = CalculateFee(ch, i_No_Tickets);
+                                }
+                        }
+                        char confirmation ;
+                            cout << "\n\nConfirm the Reservation(Y/N): \n\n" ;
+                            cin >> confirmation ;
+                            confirmation = tolower(confirmation);
+                        if(confirmation == 'y'){
+                                fstream Reservations ;
+                                fstream Seats ;
+                                string line ;
+                                Reservations.open("Reservations.txt", ios::app | ios:: out | ios::ate);
+                                Seats.open("Seat.txt", ios :: app | ios :: out | ios :: ate | ios :: in);
+                                Seats <<  str_NIC << "\t" << i_No_Tickets <<"\n" ;
+                                Reservations << str_NIC <<"\t"<< str_Dep_St <<"\t"<< str_Arrival_St <<"\t"<< i_No_Tickets
+                                            << "\t" << i_total <<"\n";
+			                                Reservations.close();
+                        }
+                        else{
+                                cout << "\n\nConfirmation denied and exiting from the program \n" ;
+                                exit(0) ;
+                        }
+                                r2.Show(str_NIC, str_Dep_St, str_Arrival_St, i_No_Tickets, ch, i_total  ) ;
+}
+// modify Reservation function
+inline void Reservations :: SearchFile_and_Update(){
+                                Reservations  r1 ;
+                                double ch;
+                                char confirmation ;
