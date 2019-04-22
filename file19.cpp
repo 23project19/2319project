@@ -46,3 +46,31 @@ protected :
                 double  CalculateFee(double, int) ;
                 ~Reservations();
 };
+                ~Passenger() ;
+};
+// class Seats
+class Seats{
+        protected:
+            int i_SeatNo ;
+        public:
+            void CheckSeatAvailabilty() ;
+};
+// class Reservations
+class Reservations : public Passenger,public Seats{
+protected :
+        string str_Arrival_St, str_Dep_St ;
+        int  i_No_Tickets, i_Charge ;
+        double i_total ;
+    public:
+                Reservations();
+                // to make a reservation
+                Reservations(string NIC, string DeptSt, string ArrivalSt, int NoTickets );
+                void SearchFile_and_Update();
+                // ModifyReservation Function
+                void Deletes();
+                // cancel reservation function
+                void Show(string, string, string, int, int, int);
+                double  CalculateFee(double, int) ;
+                ~Reservations();
+};
+
