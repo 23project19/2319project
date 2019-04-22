@@ -665,4 +665,209 @@ inline Reservations :: Reservations(){}
 
 return 0;
 
- }
+cin >> str_NIC ;
+
+                                     cout << "\n\n-------------------------------------------------\n\n" ;
+
+
+
+                            ResIn.open("Reservations.txt");
+                            SeatIn.open("Seats.txt") ;
+
+
+                                while(ResIn >> nic >> dept >> arr >> nt >> ch >> tot){
+
+                                    ResOut.open("temp5.txt",ios :: app | ios :: out) ;
+
+
+                                        if(nic != str_NIC){
+
+
+                                            while(SeatIn >> nic2 >> sn){
+
+                                                SeatOut.open("temp6.txt",ios :: app | ios :: out) ;
+
+                                                    if(nic2 != str_NIC){
+
+
+
+                                                            SeatOut <<  nic2 << "\t" << nt << "\n";
+
+                                                            ResOut << nic <<"\t"<< dept <<"\t"<< arr <<"\t"<< nt <<"\t"<< ch
+                                                                       << tot  << "\n";
+
+
+
+                                                    }
+
+                                                    else {
+
+                                                            count01 ++ ;
+
+
+                                    }
+
+                                    } // end of while - match4
+
+                                        } // end of outer if
+
+                                } // end of outer while
+                        }//end of confirmation if
+
+                                        ResOut.close();
+                                        SeatOut.close();
+
+
+
+                                     if(count01 == 0){
+
+                                                cout << "\n\nRecord  could not be found!\n\n" ;
+                                                remove("temp5.txt") ;
+                                                remove("temp6.txt") ;
+
+                                                }
+
+                                    if(count01 > 0){
+
+                                                remove("Reservations.txt");
+                                                rename("temp5.txt","Reservations.txt");
+                                                remove("Seats.txt");
+                                                rename("temp6.txt","Seats.txt");
+                                            }
+
+
+                                                ResIn.close() ;
+                                                cout << "\n\nDone!\n\n" ;
+
+
+
+
+
+}
+
+// Reservations - Show
+inline void Reservations :: Show(string NIC, string Dept_St, string Arrival_St, int No_Tickets, int Charge, int total ){
+
+                        system("CLS") ;
+
+                  cout <<"\n\nNIC :" << NIC  << "\n"
+                       <<"\n\nDep. St. :" << Dept_St << "\t\t"
+                       <<"Arrival St. :" << Arrival_St <<"\n\n"
+                       <<"No_Tickets :" << No_Tickets <<"\t"
+                       <<"Charge for one ticket :" << Charge <<"\t"
+                       << "total = " << total <<"\n\n" ;
+
+
+}
+
+// Reservations Deconstructor
+
+inline Reservations :: ~Reservations(){}
+
+
+// Payments Calculate
+inline double Reservations :: CalculateFee(double fee, int nt)
+{
+   i_total = nt * fee ;
+   return i_total ;
+}
+
+
+// Seats - CheckSeatAvailability
+ inline void  Seats ::  CheckSeatAvailabilty(){
+
+                    int  NoLines = 0 ;
+                    string line ;
+                    ifstream SeatAvailbility ;
+
+                    SeatAvailbility.open("Seats.txt");
+
+                    while(SeatAvailbility.eof()){
+
+                            getline(SeatAvailbility,line) ;
+                            NoLines ++;
+
+
+
+                    }
+
+                    i_SeatNo = NoLines  ;
+
+
+
+                            if(i_SeatNo == 32 ){
+
+                            cout <<"\n\nSeats are not available at the moment.\n\n" ;
+                            }
+
+                            else
+                            {
+
+
+                            cout <<"\n\n" << 32 - i_SeatNo << "  are available.\n\n" ;
+
+                            }
+
+                    SeatAvailbility.close();
+                } // seat availability  function end
+
+// Delete record function
+inline void Passenger ::  Deletes(){
+
+
+
+                    string   nic, name, city, username, password , cn;
+
+                     cout <<"\n\nEnter your NIC to delete the record :\n\n" ;
+                     cin >> str_NIC ;
+
+
+                        fstream deleteF ;
+                        ofstream df ;
+
+                        deleteF.open("Passenger.txt", ios::in | ios :: out);
+
+
+                            while(deleteF >> nic >> name >> city >> cn >>username >> password){
+
+                                    df.open("temp2.txt",ios :: ate ) ;
+
+                                        if(nic != str_NIC){
+
+                                            df    << nic <<"\t"<< name <<"\t"<< city <<"\t"
+                                                      << cn <<"\t"<< username
+                                                      <<"\t"  << password << "\n";
+
+                                        }
+
+
+                                        else {
+
+                                               count01 ++ ;
+                                        }
+
+                                            df.close() ;
+
+
+                                }// end of while
+
+                                  deleteF.close() ;
+                                if(count01 == 0){
+
+                                                remove("temp2.txt") ;
+                                                cout << "\n\nRecord not found\n\n" ;
+
+                                                }
+
+                                            if(count01 > 0){
+
+                                                remove("Passenger.txt");
+                                                rename("temp2.txt","Passenger.txt");
+
+                                            }
+
+
+                                        cout << "\n\nDone!\n\n" ;
+
+
+            }  }
