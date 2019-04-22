@@ -148,3 +148,55 @@ inline void Reservations :: SearchFile_and_Update(){
                                 Reservations  r1 ;
                                 double ch;
                                 char confirmation ;
+				// modify Reservation function
+
+inline void Reservations :: SearchFile_and_Update(){
+
+
+                                Reservations  r1 ;
+                                double ch;
+                                char confirmation ;
+                                int   s7;
+
+
+                                    ifstream reservationsIn ; //SEARCH
+                                    ifstream  seatsIn; //search
+
+                                    fstream  reservationsOut ;
+                                    fstream seatsOut ;
+
+                                    cout << "\n\nConfirm the You wants to modify reservation(Y/N): \n\n" ;
+                                    cin >> confirmation ;
+                                    confirmation = tolower(confirmation) ;
+                                    system("CLS");
+
+                        if(confirmation == 'y'){
+
+
+                                    TimeTables T1 ;
+                                    Payments P1 ;
+                                    T1.Show();
+                                    P1.Show() ;
+
+                                    cout << "\n\n-------------------------------------------------\n\n" ;
+
+                                    cout <<"\n\nEnter new your NIC :\n\n" ;
+                                    cin >> str_NIC ;
+
+                                     cout << "\n\n-------------------------------------------------\n\n" ;
+
+                                    cout << "\n\n New Depature station\n\n " ;
+                                    cin >> str_Dep_St ;
+
+                                    cout << "\n\n New Arrival station\n\n " ;
+                                    cin >> str_Arrival_St ;
+
+
+                                    cout << "\n\nNew  No. of Tickets\n\n " ;
+                                    cin >> i_No_Tickets ;
+
+
+                                    fstream PaymentsRead ;
+                                    PaymentsRead.open("Payments.txt", ios :: in) ;
+
+
