@@ -529,3 +529,140 @@ inline Reservations :: Reservations(){}
                 };//main choice first case
 
                     break ;
+
+
+        case 2:{
+                        system("CLS");
+                        int subChoice2 ;
+
+
+                        cout << "-------------------------------------------------\n\n"
+                             <<  "\n\n1.Make a Reservation\n\n"
+                             << "2.Modify Reservation\n\n"
+                             << "3.Cancel Reservation\n\n"
+                             << "\n\nEnter your choice :" ;
+
+
+                         cin >> subChoice2 ;
+
+
+                    switch(subChoice2){
+
+
+                         case 1:{
+
+
+
+                                    system("CLS");
+                                    Reservations R2 ;
+                                    R2.Login() ;
+                                    char check ;
+
+
+                                    system("CLS");
+                                    cout << "\n\nCheck seat availabilty(Y/N) ?\n" ;
+                                    cin >> check ;
+                                    check = tolower(check);
+
+                                    if(check == 'y'){
+
+                                       TimeTables T1 ;
+                                       Payments P1 ;
+
+                                       R2.CheckSeatAvailabilty();
+                                       T1.Show();
+                                       P1.Show();
+
+
+                                    cout << "\n\n Passenger NIC:\n\n "  ;
+                                    cin >> NIC ;
+
+                                    cout << "\n\n Depature station\n\n " ;
+                                    cin >> DepSt ;
+
+                                    cout << "\n\n Arrival station\n\n " ;
+                                    cin >> ArrSt ;
+
+                                    cout << "\n\nNo. of Tickets\n\n " ;
+                                    cin >> nt ;
+
+                                    Reservations R2(NIC,DepSt, ArrSt, nt);
+
+                                    }
+                                    goto mainMenu ;
+                                };
+
+
+                                    break ;
+
+
+
+
+                            case 2:{
+                                         system("CLS");
+                                         Reservations R3 ;
+                                         R3.Login() ;
+                                         R3.SearchFile_and_Update() ;
+
+                                         cout << "Press any key to move to the main Menu.\n\n" ;
+
+                                         system("PAUSE") ;
+                                         goto mainMenu ;
+                                         system("CLS");
+
+
+                                        };
+                                        break ;
+
+                            case 3:{
+                                              system("CLS");
+                                              Reservations R4 ;
+                                              R4.Login() ;
+                                              R4.Deletes() ;
+
+                                              cout << "Press any key to move to the main Menu.\n\n" ;
+
+                                              system("PAUSE") ;
+                                              goto mainMenu ;
+                                              system("CLS");
+
+
+
+
+
+                                            };
+
+
+                                        break ;
+
+
+                    } // second sub switch end
+
+
+                    //main switch case 2 ;
+
+                };
+                    break ;
+        case 3:{
+                    system("CLS");
+                    exit(0);
+
+                };
+                    break ;
+
+    } // main switch end
+
+
+    }
+
+
+    catch(...){
+
+        perror ("\n\nUnexpected Error occoured, Program is terminating\n\n") ;
+         exit(0);
+
+    }
+
+return 0;
+
+ }
