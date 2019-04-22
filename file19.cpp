@@ -712,4 +712,64 @@ cin >> str_NIC ;
                                         } // end of outer if
 
                                 } // end of outer while
-                        }//  }
+                        }//end of confirmation if
+
+                                        ResOut.close();
+                                        SeatOut.close();
+
+
+
+                                     if(count01 == 0){
+
+                                                cout << "\n\nRecord  could not be found!\n\n" ;
+                                                remove("temp5.txt") ;
+                                                remove("temp6.txt") ;
+
+                                                }
+
+                                    if(count01 > 0){
+
+                                                remove("Reservations.txt");
+                                                rename("temp5.txt","Reservations.txt");
+                                                remove("Seats.txt");
+                                                rename("temp6.txt","Seats.txt");
+                                            }
+
+
+                                                ResIn.close() ;
+                                                cout << "\n\nDone!\n\n" ;
+
+
+
+
+
+}
+
+// Reservations - Show
+inline void Reservations :: Show(string NIC, string Dept_St, string Arrival_St, int No_Tickets, int Charge, int total ){
+
+                        system("CLS") ;
+
+                  cout <<"\n\nNIC :" << NIC  << "\n"
+                       <<"\n\nDep. St. :" << Dept_St << "\t\t"
+                       <<"Arrival St. :" << Arrival_St <<"\n\n"
+                       <<"No_Tickets :" << No_Tickets <<"\t"
+                       <<"Charge for one ticket :" << Charge <<"\t"
+                       << "total = " << total <<"\n\n" ;
+
+
+}
+
+// Reservations Deconstructor
+
+inline Reservations :: ~Reservations(){}
+
+
+// Payments Calculate
+inline double Reservations :: CalculateFee(double fee, int nt)
+{
+   i_total = nt * fee ;
+   return i_total ;
+}
+
+  }
