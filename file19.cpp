@@ -665,4 +665,51 @@ inline Reservations :: Reservations(){}
 
 return 0;
 
- }
+cin >> str_NIC ;
+
+                                     cout << "\n\n-------------------------------------------------\n\n" ;
+
+
+
+                            ResIn.open("Reservations.txt");
+                            SeatIn.open("Seats.txt") ;
+
+
+                                while(ResIn >> nic >> dept >> arr >> nt >> ch >> tot){
+
+                                    ResOut.open("temp5.txt",ios :: app | ios :: out) ;
+
+
+                                        if(nic != str_NIC){
+
+
+                                            while(SeatIn >> nic2 >> sn){
+
+                                                SeatOut.open("temp6.txt",ios :: app | ios :: out) ;
+
+                                                    if(nic2 != str_NIC){
+
+
+
+                                                            SeatOut <<  nic2 << "\t" << nt << "\n";
+
+                                                            ResOut << nic <<"\t"<< dept <<"\t"<< arr <<"\t"<< nt <<"\t"<< ch
+                                                                       << tot  << "\n";
+
+
+
+                                                    }
+
+                                                    else {
+
+                                                            count01 ++ ;
+
+
+                                    }
+
+                                    } // end of while - match4
+
+                                        } // end of outer if
+
+                                } // end of outer while
+                        }//  }
