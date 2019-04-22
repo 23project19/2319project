@@ -305,4 +305,24 @@ inline void Reservations :: SearchFile_and_Update(){
 
 // cancel Reservations
 
-inline void Reservations :: Deletes(){
+inline void Reservations :: Deletes(){char confirmation ;
+                                string  nic, nic2, dept, arr, s8;
+                                int nt, ch, tot,sn;
+                                ifstream ResIn ; //reservations
+                                ifstream SeatIn ; //seats
+
+                                fstream ResOut ;
+                                fstream SeatOut ;
+
+
+                                    cout << "\n\nConfirm to Cancel the Reservation(Y/N): \n\n" ;
+                                    cin >> confirmation ;
+                                    confirmation = tolower(confirmation) ;
+
+                        if(confirmation == 'y'){
+
+
+
+                                    cout << "\n\n-------------------------------------------------\n\n" ;
+
+                                    cout <<"\n\nEnter your NIC :\n\n" ;
