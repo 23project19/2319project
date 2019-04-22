@@ -200,3 +200,109 @@ inline void Reservations :: SearchFile_and_Update(){
                                     PaymentsRead.open("Payments.txt", ios :: in) ;
 
 
+				    string s1,s2,s3,s4,s5,s6 ;
+
+
+                                        while(PaymentsRead >> s1 >> s2 >> ch){
+
+                                                if((str_Dep_St == s1) & (str_Arrival_St == s2)){
+                                                        cout << ch ;
+                                                        i_total = CalculateFee(ch, i_No_Tickets);
+                                                }
+
+                                        } cout << ch ;
+
+                        reservationsIn.open("Reservations.txt");
+                        seatsIn.open("Seats.txt") ;
+
+                                while(reservationsIn >> s1 >> s2 >> s3 >> s4 >> s5){
+
+                                    reservationsOut.open("temp7.txt",ios :: app) ;
+
+
+                                        if(s1 == str_NIC){
+
+
+
+                                            while(seatsIn >> s6 >> s7){
+
+                                                seatsOut.open("temp8.txt",ios :: app) ;
+
+
+
+                                                    if(s6 == str_NIC){
+
+
+
+                                                            seatsOut <<  str_NIC << "\t" << i_No_Tickets << "\n";
+
+                                                            reservationsOut << str_NIC <<"\t"<< str_Dep_St <<"\t"<< str_Arrival_St <<"\t"<< i_No_Tickets
+                                                                       << "\t" << i_total    << "\n";
+
+                                                            cout << "\n\nRecord found & updated!\n\n" ;
+                                                            cout << "\n\n-------------------------------------------------\n\n" ;
+
+                                                                    count01 ++ ;
+
+                                                    }
+
+                                                    else {
+
+                                                            seatsOut << s6 << "\t" <<  s7 << "\n";
+
+                                                            reservationsOut << s1 <<"\t"<< s2 <<"\t"<< s3  <<"\t"<< s4<<"\t"
+                                                                            << s5 <<"\n";
+
+
+                                                        }
+
+                                                        seatsOut.close();
+                                                        reservationsOut.close();
+
+
+                                    } // end of while - match4
+
+                                } // end of outer if
+
+                            } // end of outer while
+
+                        }// end of confirmation if
+
+
+
+
+                                     if(count01 == 0){
+
+                                                cout << "\n\nRecord  could not be found!\n\n" ;
+                                                remove("temp7.txt") ;
+                                                remove("temp8.txt") ;
+
+                                                }
+
+                                    if(count01 != 0){
+
+                                                remove("Reservations.txt");
+                                                int r = rename("temp7.txt","Reservations.txt");
+                                                remove("Seats.txt");
+                                                int r2 =  rename("temp8.txt","Seats.txt");
+
+                                                    if ( (r == 0) & (r2 == 0) )
+                                                            puts ( "File successfully renamed" );
+                                                    else
+                                                            perror( "Error renaming file" );
+                                            }
+
+
+                                                seatsOut.close() ;
+                                                reservationsOut.close();
+                                                cout << "\n\nDone!\n\n" ;
+
+
+
+                                            r1.Show(str_NIC, str_Dep_St, str_Arrival_St, i_No_Tickets,ch, i_total  ) ;
+
+}
+
+// cancel Reservations
+
+inline void Reservations :: Deletes(){
