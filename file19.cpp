@@ -437,3 +437,95 @@ inline Reservations :: Reservations(){}
 
 
                             switch(subChoiceOne){
+
+
+                          case 1: {
+
+
+                                    system("CLS");
+
+
+                                     cout << "-------------------------------------------------\n\n"
+                                          << "Please fill in this information for the Registration";
+
+
+                                     cout << "\n\nPassenger Name:\n\n "  ;
+                                     cin >> name ;
+
+                                     cout << "\n\nPassenger NIC:\n\n " ;
+                                     cin >> NIC ;
+
+                                    cout << "\n\nPassenger City:\n\n " ;
+                                    cin >> City ;
+
+                                    cout << "\n\nPassenger : Contact No\n\n " ;
+                                    cin >> ContactNumber ;
+
+                                    cout << "\n\nPassenger : UserName \n\n " ;
+                                    cin >> UserName ;
+
+                                    cout << "\n\nPassenger : Password\n\n " ;
+                                    cin >> Password ;
+                                    //make the password protective
+
+
+                        Passenger P1(name, NIC,  City, ContactNumber , UserName, Password );
+
+                        cout << "\n\nPress any key to move to the sub Menu.\n\n" ;
+
+                        system("PAUSE") ;
+                        system("CLS");
+                        goto subMenu ;
+                        system("CLS");
+
+                        }; // Sub  choice first case
+
+
+                                break ;
+
+
+                        case 2:{
+
+                                    system("CLS");
+                                    Passenger P2 ;
+                                    P2.Login() ;
+                                    P2.SearchFile_and_Update() ;
+
+
+                                    cout << "Press any key to move to the sub Menu.\n\n" ;
+
+                                    system("PAUSE") ;
+                                    goto subMenu ;
+                                    system("CLS");
+
+
+
+
+                        } ;
+
+                                break ;
+
+
+
+                        case 3:{
+
+                                system("CLS");
+                                Passenger P3 ;
+                                P3.Login() ;
+                                P3.Deletes() ;
+
+                                cout << "Press any key to move to the sub Menu.\n\n" ;
+
+                                system("PAUSE") ;
+                                goto subMenu ;
+                                system("CLS");
+
+                       };
+
+                                break ;
+
+                            }//sub switch one
+
+                };//main choice first case
+
+                    break ;
